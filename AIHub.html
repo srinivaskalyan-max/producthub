@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Tools Dashboard</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f0f0f;
+      color: #f0f0f0;
+    }
+    header {
+      padding: 20px;
+      background: #1a1a1a;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      background: linear-gradient(to right, #00f0ff, #ff1cf7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      padding: 20px;
+    }
+
+    .controls input, .controls select {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      width: 200px;
+      font-size: 1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .card {
+      background: #1c1c1c;
+      border: 1px solid #333;
+      padding: 20px;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+      border-color: #00f0ff;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: #00f0ff;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #444;
+      color: #ccc;
+      font-size: 0.8rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      margin: 10px 0;
+    }
+
+    .card button {
+      background: #00f0ff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      color: #000;
+    }
+
+    form {
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 600px;
+      margin: 40px auto;
+    }
+
+    form h2 {
+      margin-top: 0;
+      color: #00f0ff;
+    }
+
+    form input, form textarea, form select {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      background: #2a2a2a;
+      color: #f0f0f0;
+    }
+
+    form button {
+      background: #00f0ff;
+      padding: 10px 20px;
+      border: none;
+      color: #000;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>AI Tools Dashboard 🚀</h1>
+  </header>
+
+  <div class="controls">
+    <input type="text" id="search" placeholder="Search AI tool...">
+    <select id="category">
+      <option value="All">All Categories</option>
+      <option value="Image">Image</option>
+      <option value="Text">Text</option>
+      <option value="Video">Video</option>
+      <option value="Voice">Voice</option>
+      <option value="Code">Code</option>
+    </select>
+  </div>
+
+  <div class="grid" id="toolGrid"></div>
+
+  <form id="submitForm">
+    <h2>Submit Your AI Tool</h2>
+    <input type="text" name="name" placeholder="Tool Name" required />
+    <input type="url" name="link" placeholder="Tool Link (https://...)" required />
+    <select name="category" required>
+      <option value="">Select Category</option>
+      <option>Image</option>
+      <option>Text</option>
+      <option>Video</option>
+      <option>Voice</option>
+      <option>Code</option>
+    </select>
+    <textarea name="desc" placeholder="Short Description..." required></textarea>
+    <button type="submit">Submit Tool</button>
+  </form>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+  <script>
+    // ✅ Replace with your own Firebase config
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+      databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    const tools = [
+      { name: "ChatGPT", desc: "AI chatbot from OpenAI.", category: "Text", link: "https://chat.openai.com" },
+      { name: "Midjourney", desc: "Image generator from text prompts.", category: "Image", link: "https://www.midjourney.com" },
+      { name: "Runway ML", desc: "Video editing and generation with AI.", category: "Video", link: "https://runwayml.com" },
+      { name: "ElevenLabs", desc: "Realistic AI voice generator.", category: "Voice", link: "https://elevenlabs.io" },
+      { name: "D-ID", desc: "Talking avatars & video from text.", category: "Video", link: "https://www.d-id.com" },
+      { name: "Leonardo AI", desc: "AI design tool for concept art.", category: "Image", link: "https://leonardo.ai" },
+      { name: "Tome", desc: "Create AI-powered presentations.", category: "Text", link: "https://tome.app" },
+      { name: "Copy.ai", desc: "Marketing copy & writing tool.", category: "Text", link: "https://copy.ai" },
+      { name: "Jasper", desc: "Content generation for businesses.", category: "Text", link: "https://jasper.ai" },
+      { name: "Soundful", desc: "Generate royalty-free music.", category: "Voice", link: "https://soundful.com" },
+      { name: "Synthesia", desc: "Create AI avatar videos.", category: "Video", link: "https://www.synthesia.io" },
+      { name: "Canva AI", desc: "Design with AI in Canva.", category: "Image", link: "https://canva.com" },
+      { name: "Durable", desc: "Instant AI websites for business.", category: "Code", link: "https://durable.co" },
+      { name: "Uizard", desc: "AI-powered UI design tool.", category: "Code", link: "https://uizard.io" },
+      { name: "Magician", desc: "AI tools for Figma.", category: "Image", link: "https://magician.design" },
+    ];
+
+    function displayTools(filterText = "", filterCategory = "All") {
+      const grid = document.getElementById('toolGrid');
+      grid.innerHTML = "";
+
+      tools
+        .filter(tool =>
+          tool.name.toLowerCase().includes(filterText.toLowerCase()) &&
+          (filterCategory === "All" || tool.category === filterCategory)
+        )
+        .forEach(tool => {
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML = `
+            <div class="tag">${tool.category}</div>
+            <h3>${tool.name}</h3>
+            <p>${tool.desc}</p>
+            <button onclick="window.open('${tool.link}', '_blank')">Try Now</button>
+          `;
+          grid.appendChild(card);
+        });
+    }
+
+    document.getElementById('search').addEventListener('input', e => {
+      displayTools(e.target.value, document.getElementById('category').value);
+    });
+
+    document.getElementById('category').addEventListener('change', e => {
+      displayTools(document.getElementById('search').value, e.target.value);
+    });
+
+    document.getElementById("submitForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const form = e.target;
+      const newTool = {
+        name: form.name.value.trim(),
+        link: form.link.value.trim(),
+        category: form.category.value,
+        desc: form.desc.value.trim()
+      };
+
+      if (newTool.name && newTool.link && newTool.category && newTool.desc) {
+        tools.unshift(newTool);
+        displayTools(document.getElementById('search').value, document.getElementById('category').value);
+
+        // ✅ Save to Firebase
+        db.ref('submittedTools').push(newTool);
+
+        alert("✅ Tool submitted successfully!");
+        form.reset();
+      } else {
+        alert("❌ Please fill out all fields.");
+      }
+    });
+
+    displayTools();
+  </script>
+</body>
+</html>
