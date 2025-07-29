@@ -3,63 +3,84 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AI Tools Dashboard</title>
+  <title>🚀 AI Tools Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
     * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: #0f0f0f;
+      background: #0e0e0e;
       color: #f0f0f0;
+      overflow-x: hidden;
     }
+
     header {
-      padding: 20px;
-      background: #1a1a1a;
+      padding: 30px 20px;
+      background: #111;
       text-align: center;
     }
+
     header h1 {
-      margin: 0;
-      font-size: 2rem;
-      background: linear-gradient(to right, #00f0ff, #ff1cf7);
+      font-size: 2.5rem;
+      background: linear-gradient(90deg, #00f0ff, #ff1cf7, #00f0ff);
+      background-size: 200% auto;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      color: transparent;
+      animation: gradientMove 5s ease infinite;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
     }
 
     .controls {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 10px;
+      gap: 12px;
       padding: 20px;
     }
 
     .controls input, .controls select {
       padding: 10px;
       border: none;
-      border-radius: 5px;
-      width: 200px;
+      border-radius: 6px;
+      width: 220px;
       font-size: 1rem;
+      background: #1a1a1a;
+      color: #fff;
     }
 
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
-      padding: 20px;
+      padding: 30px 20px;
     }
 
     .card {
-      background: #1c1c1c;
+      background: rgba(28,28,28,0.9);
       border: 1px solid #333;
       padding: 20px;
-      border-radius: 10px;
-      transition: 0.3s;
+      border-radius: 12px;
+      transition: 0.4s ease;
+      box-shadow: 0 0 15px #00000055;
+      animation: fadeIn 0.5s ease forwards;
+      transform: scale(0.98);
     }
 
     .card:hover {
       transform: scale(1.03);
       border-color: #00f0ff;
+      background: rgba(34, 34, 34, 0.95);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .card h3 {
@@ -78,7 +99,7 @@
     }
 
     .card p {
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       margin: 10px 0;
     }
 
@@ -86,45 +107,84 @@
       background: #00f0ff;
       border: none;
       padding: 8px 16px;
-      border-radius: 5px;
+      border-radius: 6px;
       cursor: pointer;
       color: #000;
+      font-weight: bold;
     }
 
     form {
       background: #1a1a1a;
-      padding: 20px;
-      border-radius: 10px;
+      padding: 30px 20px;
+      border-radius: 14px;
       max-width: 600px;
       margin: 40px auto;
+      box-shadow: 0 0 10px #00000044;
+      animation: fadeIn 0.6s ease;
     }
 
     form h2 {
       margin-top: 0;
       color: #00f0ff;
+      text-align: center;
     }
 
     form input, form textarea, form select {
       width: 100%;
-      margin-bottom: 10px;
-      padding: 10px;
-      border-radius: 5px;
+      margin-bottom: 15px;
+      padding: 12px;
+      border-radius: 6px;
       border: none;
       background: #2a2a2a;
       color: #f0f0f0;
+      font-size: 1rem;
     }
 
     form button {
       background: #00f0ff;
-      padding: 10px 20px;
+      padding: 12px 20px;
       border: none;
       color: #000;
-      border-radius: 5px;
+      border-radius: 6px;
       cursor: pointer;
+      font-weight: bold;
+      width: 100%;
     }
+
+    .message {
+      text-align: center;
+      padding: 10px;
+      background: #00f0ff;
+      color: #000;
+      border-radius: 5px;
+      margin: 10px auto;
+      max-width: 400px;
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+      nav {
+    background: #f0f0f0;
+    padding: 10px;
+    text-align: center;
+  }
+  nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+  }
   </style>
 </head>
 <body>
+ 
+ <nav>
+    <a href="AIHub.html">Home</a> |
+    <a href="blog.html">Blog</a> |
+    <a href="tools.html">Tools</a> |
+    <a href="about.html">About</a> |
+    <a href="contact.html">Contact</a>
+    <a href="privacy.html">Privacy Policy</a>
+  </nav>
   <header>
     <h1>AI Tools Dashboard 🚀</h1>
   </header>
@@ -143,8 +203,19 @@
 
   <div class="grid" id="toolGrid"></div>
 
+  <div class="message" id="statusMessage"></div>
+<!-- 🔔 Email Popup -->
+<div id="emailPopup" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:#000000aa; z-index:9999; align-items:center; justify-content:center;">
+  <div style="background:#1a1a1a; padding:30px; border-radius:12px; width:90%; max-width:400px; position:relative;">
+    <button onclick="dismissEmailPopup()" style="position:absolute; top:10px; right:12px; background:none; color:#fff; font-size:20px; border:none; cursor:pointer;">✖</button>
+    <h3 style="color:#00f0ff; text-align:center;">Join the AI Revolution 🚀</h3>
+    <p style="text-align:center; font-size:0.95rem;">Enter your email to access AI tools!</p>
+    <input id="userEmailInput" type="email" placeholder="you@example.com" style="width:100%; padding:12px; border:none; border-radius:6px; background:#2a2a2a; color:#fff; margin-top:10px;" />
+    <button onclick="submitEmail()" style="margin-top:15px; background:#00f0ff; border:none; color:#000; padding:10px 15px; border-radius:6px; width:100%; font-weight:bold;">Submit</button>
+  </div>
+</div>
   <form id="submitForm">
-    <h2>Submit Your AI Tool</h2>
+    <h2>🚀 Submit Your AI Tool</h2>
     <input type="text" name="name" placeholder="Tool Name" required />
     <input type="url" name="link" placeholder="Tool Link (https://...)" required />
     <select name="category" required>
@@ -163,20 +234,81 @@
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
   <script>
-    // ✅ Replace with your own Firebase config
+    // Replace with your actual Firebase config
     const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-      databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_PROJECT_ID.appspot.com",
-      messagingSenderId: "YOUR_SENDER_ID",
-      appId: "YOUR_APP_ID"
-    };
+  apiKey: "AIzaSyCYPS5DgwcvVNcSdV06ZPuCEnOABFScKzo",
+  authDomain: "producthub-59c9a.firebaseapp.com",
+  projectId: "producthub-59c9a",
+  storageBucket: "producthub-59c9a.firebasestorage.app",
+  messagingSenderId: "386176606856",
+  appId: "1:386176606856:web:ad4e787e2217a7a81d753d",
+  measurementId: "G-WWQV2L97GQ"
+};
 
+     
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
+     const emailKey = "ai_user_email";
 
+  function showEmailPopup() {
+    if (!localStorage.getItem(emailKey)) {
+      document.getElementById("emailPopup").style.display = "flex";
+    }
+  }
+
+  function dismissEmailPopup() {
+    document.getElementById("emailPopup").style.display = "none";
+  }
+
+  function submitEmail() {
+    const email = document.getElementById("userEmailInput").value.trim();
+    if (!email || !email.includes("@")) {
+      alert("Please enter a valid email.");
+      return;
+    }
+
+    // Save to Firebase
+  firebase.database().ref("emails").push({
+  email: email,
+  timestamp: Date.now()
+});
+
+    // Remember locally
+    localStorage.setItem(emailKey, email);
+
+    // Hide popup
+    document.getElementById("emailPopup").style.display = "none";
+
+    // If a pending link exists, open it now
+    if (window.pendingLink) {
+      window.open(window.pendingLink, "_blank");
+      window.pendingLink = null;
+    }
+  }
+
+  // ⏳ Show popup after 5 sec (if not already submitted)
+  setTimeout(showEmailPopup, 5000);
+
+  // 🧠 Hook into “Try Now” buttons
+  function secureOpen(link) {
+    const userEmail = localStorage.getItem(emailKey);
+    if (!userEmail) {
+      window.pendingLink = link;
+      showEmailPopup();
+    } else {
+      window.open(link, "_blank");
+    }
+  }
+
+  // 👇 Replace all button onClicks dynamically
+  setTimeout(() => {
+    document.querySelectorAll(".card button").forEach(btn => {
+      const link = btn.getAttribute("onclick")?.match(/'(.*?)'/)?.[1];
+      if (link) {
+        btn.setAttribute("onclick", `secureOpen('${link}')`);
+      }
+    });
+  }, 200);
     const tools = [
       { name: "ChatGPT", desc: "AI chatbot from OpenAI.", category: "Text", link: "https://chat.openai.com" },
       { name: "Midjourney", desc: "Image generator from text prompts.", category: "Image", link: "https://www.midjourney.com" },
@@ -193,12 +325,21 @@
       { name: "Durable", desc: "Instant AI websites for business.", category: "Code", link: "https://durable.co" },
       { name: "Uizard", desc: "AI-powered UI design tool.", category: "Code", link: "https://uizard.io" },
       { name: "Magician", desc: "AI tools for Figma.", category: "Image", link: "https://magician.design" },
+      { name: "Perplexity AI 🧠", desc: "Ask questions with real-time, cited answers.", category: "Text", link: "https://www.perplexity.ai" },
+      { name: "Kaiber AI 🎞️", desc: "Create music videos and animations from prompts.", category: "Video", link: "https://www.kaiber.ai" },
+      { name: "Leonardo AI 🎨", desc: "Next-gen image generation and design.", category: "Image", link: "https://app.leonardo.ai" },
+      { name: "Runway ML 🎬", desc: "AI-powered video editing and text-to-video tools.", category: "Video", link: "https://app.runwayml.com" },
+      { name: "ElevenLabs 🗣️", desc: "High-quality AI voice synthesis in multiple languages.", category: "Voice", link: "https://www.elevenlabs.io" },
+      { name: "Notion AI 📝", desc: "Smart writing assistant embedded in Notion.", category: "Text", link: "https://www.notion.so/product/ai" },
+      { name: "Pictory AI 📹", desc: "Turn scripts or blog posts into videos.", category: "Video", link: "https://pictory.ai" },
+      { name: "Cleanup.pictures 🧽", desc: "Remove unwanted objects from images easily.", category: "Image", link: "https://cleanup.pictures" },
+      { name: "Codeium 💻", desc: "Free AI code autocomplete & chat for devs.", category: "Code", link: "https://codeium.com" },
+      { name: "Riffusion 🎶", desc: "Create music from spectrogram-based AI.", category: "Voice", link: "https://www.riffusion.com" },
     ];
 
     function displayTools(filterText = "", filterCategory = "All") {
       const grid = document.getElementById('toolGrid');
       grid.innerHTML = "";
-
       tools
         .filter(tool =>
           tool.name.toLowerCase().includes(filterText.toLowerCase()) &&
@@ -238,11 +379,16 @@
       if (newTool.name && newTool.link && newTool.category && newTool.desc) {
         tools.unshift(newTool);
         displayTools(document.getElementById('search').value, document.getElementById('category').value);
-
-        // ✅ Save to Firebase
         db.ref('submittedTools').push(newTool);
 
-        alert("✅ Tool submitted successfully!");
+        const msg = document.getElementById("statusMessage");
+        msg.textContent = "✅ Tool submitted successfully!";
+        msg.style.display = "block";
+
+        setTimeout(() => {
+          msg.style.display = "none";
+        }, 3000);
+
         form.reset();
       } else {
         alert("❌ Please fill out all fields.");
@@ -251,5 +397,25 @@
 
     displayTools();
   </script>
+  <footer style="padding: 40px 20px; text-align: center; background: #111; color: #aaa; font-size: 0.95rem;">
+  <h3 style="color:#00f0ff;">📢 Advertise With Us</h3>
+  <p>Want to promote your AI tool or product on this site?</p>
+  <p>Email us at <a href="mailto:producthubone@gmail.com" style="color:#00f0ff;">ads@yourdomain.com</a></p>
+  <p>We're open to partnerships, banners, and custom promotions.</p>
+</footer>
+<section style="padding: 40px; background: #1a1a1a; color: #f0f0f0; border-top: 2px solid #00f0ff; margin-top: 40px;">
+  <h2 style="font-size: 24px; margin-bottom: 10px; color: #00f0ff;">📢 Advertise With Us</h2>
+  <p><strong>Traffic:</strong> 1000+ monthly users</p>
+  <p><strong>Audience:</strong> Tech lovers, students, AI enthusiasts</p>
+  <p><strong>Ad Options:</strong> Banner ads, blog mentions, product placements</p>
+  <p><strong>Contact us:</strong> <a href="mailto:producthubone@gmail.com" style="color:#00f0ff;">producthubone@gmail.com</a></p>
+</section>
+<footer>
+  <a href="about.html">About</a> |
+  <a href="contact.html">Contact</a> |
+  <a href="privacy.html">Privacy Policy</a>
+</footer>
+
+
 </body>
 </html>
