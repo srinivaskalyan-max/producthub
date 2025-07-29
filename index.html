@@ -224,22 +224,26 @@
 
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
 
   <script>
     // Replace with your actual Firebase config
 const firebaseConfig = {
-  apiKey: "AIzaSyCJxnLq7qOmE2btSKPKTM_abG1O-cB_vjk",
-  authDomain: "aihub-d1d64.firebaseapp.com",
-  databaseURL: "https://aihub-d1d64-default-rtdb.firebaseio.com",
-  projectId: "aihub-d1d64",
-  storageBucket: "aihub-d1d64.firebasestorage.app",
-  messagingSenderId: "528900843091",
-  appId: "1:528900843091:web:31b9449eadb2dac74848a6",
-  measurementId: "G-443PXV3X0F"
+  apiKey: "AIzaSyCWP4LAlKvVwranCpK_tmyBplhwcJu8E0E",
+  authDomain: "blogaihub.firebaseapp.com",
+  databaseURL: "https://blogaihub-default-rtdb.firebaseio.com",
+  projectId: "blogaihub",
+  storageBucket: "blogaihub.firebasestorage.app",
+  messagingSenderId: "280427390233",
+  appId: "1:280427390233:web:7a7f3d48d48cfea3ff5188",
+  measurementId: "G-RMJZDDSZLG"
 };
+
 
      
     firebase.initializeApp(firebaseConfig);
+    
     const db = firebase.database();
      const emailKey = "ai_user_email";
 
@@ -261,10 +265,13 @@ const firebaseConfig = {
     }
 
     // Save to Firebase
-  firebase.database().ref("emails").push({
+ firebase.firestore().collection("emails").add({
   email: email,
- 
+  timestamp: firebase.firestore.FieldValue.serverTimestamp()
 });
+
+ 
+
 
     // Remember locally
     localStorage.setItem(emailKey, email);
@@ -372,7 +379,10 @@ const firebaseConfig = {
       if (newTool.name && newTool.link && newTool.category && newTool.desc) {
         tools.unshift(newTool);
         displayTools(document.getElementById('search').value, document.getElementById('category').value);
-        db.ref('submittedTools').push(newTool);
+        firebase.firestore().collection("tools").add({
+  ...newTool,
+  timestamp: firebase.firestore.FieldValue.serverTimestamp()
+});
 
         const msg = document.getElementById("statusMessage");
         msg.textContent = "✅ Tool submitted successfully!";
