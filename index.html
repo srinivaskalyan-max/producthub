@@ -176,6 +176,73 @@
   </style>
 
 </head>
+  <body>
+  <!-- Banner Ad -->
+  <div style="width:160px; height:600px; margin:auto;">
+    <script type="text/javascript">
+      atOptions = {
+        'key' : '0f8c86dd1767b63d8841d00d7480701d',
+        'format' : 'iframe',
+        'height' : 600,
+        'width' : 160,
+        'params' : {}
+      };
+    </script>
+    <script type="text/javascript" src="//www.highperformanceformat.com/0f8c86dd1767b63d8841d00d7480701d/invoke.js"></script>
+  </div>
+
+  <!-- Popunder Script -->
+  <script type='text/javascript' src='//pl27299320.profitableratecpm.com/ea/0b/06/ea0b06d958d1ccfe12231d4d140feb96.js'></script>
+
+  <!-- Google AdSense block (Responsive) -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-5348965009233366"
+       data-ad-slot="1234567890"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+  <!-- Your UI -->
+  <div class="grid" id="toolGrid"></div>
+  <div class="message" id="statusMessage"></div>
+  <div id="adminControls" style="display:none;">
+    <button onclick="downloadAllEmails()">Download All Emails</button>
+  </div>
+
+  <!-- Auth Popup + Admin Check -->
+  <script>
+    const adminEmail = "yourmail@gmail.com";
+
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        console.log("Logged in as:", user.email);
+        if (user.email === adminEmail) {
+          document.getElementById('adminControls').style.display = 'block';
+        }
+      } else {
+        auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+      }
+    });
+
+    async function downloadAllEmails() {
+      const snapshot = await db.collection("emails").get();
+      let data = "Email, Timestamp\n";
+      snapshot.forEach(doc => {
+        const d = doc.data();
+        data += `${d.email}, ${d.timestamp}\n`;
+      });
+
+      const blob = new Blob([data], { type: 'text/csv' });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "emails.csv";
+      link.click();
+    }
+  </script>
+</body>
 <body>
  
   <header>
@@ -193,36 +260,6 @@
       <option value="Code">Code</option>
     </select>
   </div>
-<body>
-  <!-- Start of Banner Ad -->
-  <div style="width:160px; height:600px; margin:auto;">
-    <script type="text/javascript">
-      atOptions = {
-        'key' : '0f8c86dd1767b63d8841d00d7480701d',
-        'format' : 'iframe',
-        'height' : 600,
-        'width' : 160,
-        'params' : {}
-      };
-    </script>
-    <script type="text/javascript" src="//www.highperformanceformat.com/0f8c86dd1767b63d8841d00d7480701d/invoke.js"></script>
-  </div>
-  <!-- End of Banner Ad -->
-
-  <!-- Optional: Popunder Script -->
-  <script type='text/javascript' src='//pl27299320.profitableratecpm.com/ea/0b/06/ea0b06d958d1ccfe12231d4d140feb96.js'></script>
-
-  <!-- Optional: Google AdSense -->
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-5348965009233366"
-       data-ad-slot="YOUR_AD_SLOT"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
-</body>
 
   <div class="grid" id="toolGrid"></div>
 
