@@ -223,6 +223,9 @@
     <textarea name="desc" placeholder="Short Description..." required></textarea>
     <button type="submit">Submit Tool</button>
   </form>
+<button id="downloadEmailsBtn" style="display: none;" onclick="downloadAllEmails()">
+  📥 Download All Emails
+</button>
 
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
@@ -241,7 +244,6 @@ const firebaseConfig = {
   appId: "1:280427390233:web:7a7f3d48d48cfea3ff5188",
   measurementId: "G-RMJZDDSZLG"
 };
-
 
      
     firebase.initializeApp(firebaseConfig);
@@ -287,6 +289,7 @@ const firebaseConfig = {
       window.pendingLink = null;
     }
   }
+
 
   // ⏳ Show popup after 5 sec (if not already submitted)
   setTimeout(showEmailPopup, 5000);
@@ -379,8 +382,6 @@ const firebaseConfig = {
       };
 
       if (newTool.name && newTool.link && newTool.category && newTool.desc) {
-        tools.unshift(newTool);
-        displayTools(document.getElementById('search').value, document.getElementById('category').value);
         firebase.firestore().collection("tools").add({
   ...newTool,
   timestamp: firebase.firestore.FieldValue.serverTimestamp()
@@ -401,6 +402,37 @@ const firebaseConfig = {
     });
 
     displayTools();
+    firebase.auth().onAuthStateChanged((user) => {
+  if (user && user.email === "your-admin@email.com") {
+    document.getElementById("downloadEmailsBtn").style.display = "block";
+  }
+});
+function downloadAllEmails() {
+  firebase.firestore().collection("emails").get()
+    .then(snapshot => {
+      const rows = [["Email", "Timestamp"]];
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        const email = data.email || "";
+        const ts = data.timestamp?.toDate().toISOString() || "";
+        rows.push([email, ts]);
+      });
+
+      const csv = rows.map(r => r.join(",")).join("\n");
+      const blob = new Blob([csv], { type: "text/csv" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "all_emails.csv";
+      a.click();
+      URL.revokeObjectURL(url);
+    })
+    .catch(err => {
+      alert("Download failed: " + err.message);
+    });
+}
+
+
   </script>
   <footer style="padding: 40px 20px; text-align: center; background: #111; color: #aaa; font-size: 0.95rem;">
   <h3 style="color:#00f0ff;">📢 Advertise With Us</h3>
