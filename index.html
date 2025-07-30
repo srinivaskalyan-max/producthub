@@ -1,12 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Basic SEO -->
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>🚀 AI Tools Dashboard</title>
-  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BlogAIHub - Explore the Best AI Tools & Trends</title>
+  <meta name="description" content="Discover top AI tools, latest trends, and insights in artificial intelligence. Stay updated with BlogAIHub." />
+  <meta name="keywords" content="AI blog, artificial intelligence, AI tools, blogaihub, machine learning, ChatGPT, AI trends" />
+  <meta name="author" content="Mancha Chinu" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://blogaihub.online/" />
 
-  <style>
+  <!-- Open Graph (Facebook, LinkedIn) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://blogaihub.online/" />
+  <meta property="og:title" content="BlogAIHub - Explore the Best AI Tools & Trends" />
+  <meta property="og:description" content="Discover top AI tools, latest trends, and insights in artificial intelligence. Stay updated with BlogAIHub." />
+  <meta property="og:image" content="https://blogaihub.online/og-image.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://blogaihub.online/" />
+  <meta name="twitter:title" content="BlogAIHub - Explore the Best AI Tools & Trends" />
+  <meta name="twitter:description" content="Discover top AI tools, latest trends, and insights in artificial intelligence. Stay updated with BlogAIHub." />
+  <meta name="twitter:image" content="https://blogaihub.online/og-image.jpg" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+  <!-- Fonts and Styles -->
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Language & Theme -->
+  <meta http-equiv="Content-Language" content="en" />
+  <meta name="theme-color" content="#0d0d0d" />
+
+  <!-- Inline Styles (Can be moved to styles.css) -->
+ <style>
     * { box-sizing: border-box; }
     body {
       margin: 0;
@@ -174,12 +205,11 @@
     font-weight: bold;
   }
   </style>
-
 </head>
-  <body>
-    
-    
-  <!-- Banner Ad -->
+
+<body>
+
+  <!-- 💡 Ads Section -->
   <div style="width:160px; height:600px; margin:auto;">
     <script type="text/javascript">
       atOptions = {
@@ -190,74 +220,35 @@
         'params' : {}
       };
     </script>
-    <script type="text/javascript" src="//www.highperformanceformat.com/0f8c86dd1767b63d8841d00d7480701d/invoke.js"></script>
+    <script src="//www.highperformanceformat.com/0f8c86dd1767b63d8841d00d7480701d/invoke.js"></script>
   </div>
-    <div style="max-width:100%; text-align:center; margin:20px 0;">
-  <iframe src="https://www.profitableratecpm.com/ybawrqtdpb?key=9f09604ea34cdee1adb8e1e23cb1df94"
-          style="width:100%; max-width:728px; height:90px; border:none; overflow:hidden;"
-          scrolling="no" frameborder="0"></iframe>
-</div>
 
+  <div style="max-width:100%; text-align:center; margin:20px 0;">
+    <iframe src="https://www.profitableratecpm.com/ybawrqtdpb?key=9f09604ea34cdee1adb8e1e23cb1df94"
+            style="width:100%; max-width:728px; height:90px; border:none; overflow:hidden;"
+            scrolling="no" frameborder="0"></iframe>
+  </div>
 
   <!-- Popunder Script -->
-  <script type='text/javascript' src='//pl27299320.profitableratecpm.com/ea/0b/06/ea0b06d958d1ccfe12231d4d140feb96.js'></script>
+  <script src="//pl27299320.profitableratecpm.com/ea/0b/06/ea0b06d958d1ccfe12231d4d140feb96.js"></script>
 
-  <!-- Google AdSense block (Responsive) -->
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5348965009233366"
+          crossorigin="anonymous"></script>
   <ins class="adsbygoogle"
        style="display:block"
        data-ad-client="ca-pub-5348965009233366"
-       data-ad-slot="1234567890"
+       data-ad-slot="3383387758"
        data-ad-format="auto"
        data-full-width-responsive="true"></ins>
-  <script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
-  <!-- Your UI -->
-  <div class="grid" id="toolGrid"></div>
-  <div class="message" id="statusMessage"></div>
-  <div id="adminControls" style="display:none;">
-    <button onclick="downloadAllEmails()">Download All Emails</button>
-  </div>
-
-  <!-- Auth Popup + Admin Check -->
-  <script>
-    const adminEmail = "yourmail@gmail.com";
-
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        console.log("Logged in as:", user.email);
-        if (user.email === adminEmail) {
-          document.getElementById('adminControls').style.display = 'block';
-        }
-      } else {
-        auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-      }
-    });
-
-    async function downloadAllEmails() {
-      const snapshot = await db.collection("emails").get();
-      let data = "Email, Timestamp\n";
-      snapshot.forEach(doc => {
-        const d = doc.data();
-        data += `${d.email}, ${d.timestamp}\n`;
-      });
-
-      const blob = new Blob([data], { type: 'text/csv' });
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.download = "emails.csv";
-      link.click();
-    }
-    
-  </script>
-</body>
-<body>
- 
+  <!-- 🔥 Header -->
   <header>
     <h1>AI Tools Dashboard 🚀</h1>
   </header>
 
+  <!-- 🔍 Search and Filter -->
   <div class="controls">
     <input type="text" id="search" placeholder="Search AI tool...">
     <select id="category">
@@ -270,19 +261,27 @@
     </select>
   </div>
 
+  <!-- 🧠 AI Tools Grid -->
   <div class="grid" id="toolGrid"></div>
-
   <div class="message" id="statusMessage"></div>
-<!-- 🔔 Email Popup -->
-<div id="emailPopup" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:#000000aa; z-index:9999; align-items:center; justify-content:center;">
-  <div style="background:#1a1a1a; padding:30px; border-radius:12px; width:90%; max-width:400px; position:relative;">
-    <button onclick="dismissEmailPopup()" style="position:absolute; top:10px; right:12px; background:none; color:#fff; font-size:20px; border:none; cursor:pointer;">✖</button>
-    <h3 style="color:#00f0ff; text-align:center;">Join the AI Revolution 🚀</h3>
-    <p style="text-align:center; font-size:0.95rem;">Enter your email to access AI tools!</p>
-    <input id="userEmailInput" type="email" placeholder="you@example.com" style="width:100%; padding:12px; border:none; border-radius:6px; background:#2a2a2a; color:#fff; margin-top:10px;" />
-    <button onclick="submitEmail()" style="margin-top:15px; background:#00f0ff; border:none; color:#000; padding:10px 15px; border-radius:6px; width:100%; font-weight:bold;">Submit</button>
+
+  <!-- 👨‍💻 Admin Button (Hidden by default) -->
+  <div id="adminControls" style="display:none;">
+    <button onclick="downloadAllEmails()">Download All Emails</button>
   </div>
-</div>
+
+  <!-- 📨 Email Capture Popup -->
+  <div id="emailPopup" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:#000000aa; z-index:9999; align-items:center; justify-content:center;">
+    <div style="background:#1a1a1a; padding:30px; border-radius:12px; width:90%; max-width:400px; position:relative;">
+      <button onclick="dismissEmailPopup()" style="position:absolute; top:10px; right:12px; background:none; color:#fff; font-size:20px; border:none; cursor:pointer;">✖</button>
+      <h3 style="color:#00f0ff; text-align:center;">Join the AI Revolution 🚀</h3>
+      <p style="text-align:center; font-size:0.95rem;">Enter your email to access AI tools!</p>
+      <input id="userEmailInput" type="email" placeholder="you@example.com" style="width:100%; padding:12px; border:none; border-radius:6px; background:#2a2a2a; color:#fff; margin-top:10px;" />
+      <button onclick="submitEmail()" style="margin-top:15px; background:#00f0ff; border:none; color:#000; padding:10px 15px; border-radius:6px; width:100%; font-weight:bold;">Submit</button>
+    </div>
+  </div>
+
+  <!-- 📝 Submit New Tool Form -->
   <form id="submitForm">
     <h2>🚀 Submit Your AI Tool</h2>
     <input type="text" name="name" placeholder="Tool Name" required />
@@ -298,16 +297,17 @@
     <textarea name="desc" placeholder="Short Description..." required></textarea>
     <button type="submit">Submit Tool</button>
   </form>
-<button id="downloadEmailsBtn" style="display: none;" onclick="downloadAllEmails()">
-  📥 Download All Emails
-</button>
 
+  <button id="downloadEmailsBtn" style="display: none;" onclick="downloadAllEmails()">📥 Download All Emails</button>
+
+  <!-- 🔌 Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 
-
-  <script>
+  <!-- 🚀 App Logic -->
+   <script>
     // Replace with your actual Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyCWP4LAlKvVwranCpK_tmyBplhwcJu8E0E",
@@ -478,7 +478,7 @@ const firebaseConfig = {
 
     displayTools();
     firebase.auth().onAuthStateChanged((user) => {
-  if (user && user.email === "your-admin@email.com") {
+  if (user && user.email === "manchasrinivas2006@gmail.com") {
     document.getElementById("downloadEmailsBtn").style.display = "block";
   }
 });
@@ -509,33 +509,31 @@ function downloadAllEmails() {
 
 
   </script>
+
+  <!-- 📢 Footer -->
   <footer style="padding: 40px 20px; text-align: center; background: #111; color: #aaa; font-size: 0.95rem;">
-  <h3 style="color:#00f0ff;">📢 Advertise With Us</h3>
-  <p>Want to promote your AI tool or product on this site?</p>
-  <p>Email us at <a href="mailto:producthubone@gmail.com" style="color:#00f0ff;">producthubone@gmail.com</a></p>
-  <p>We're open to partnerships, banners, and custom promotions.</p>
-</footer>
-<section style="padding: 40px; background: #1a1a1a; color: #f0f0f0; border-top: 2px solid #00f0ff; margin-top: 40px;">
-  <h2 style="font-size: 24px; margin-bottom: 10px; color: #00f0ff;">📢 Advertise With Us</h2>
-  <p><strong>Traffic:</strong> 1000+ monthly users</p>
-  <p><strong>Audience:</strong> Tech lovers, students, AI enthusiasts</p>
-  <p><strong>Ad Options:</strong> Banner ads, blog mentions, product placements</p>
-  <p><strong>Contact us:</strong> <a href="mailto:producthubone@gmail.com" style="color:#00f0ff;">producthubone@gmail.com</a></p>
-</section>
-   <nav>
+    <h3 style="color:#00f0ff;">📢 Advertise With Us</h3>
+    <p>Want to promote your AI tool or product on this site?</p>
+    <p>Email us at <a href="mailto:producthubone@gmail.com" style="color:#00f0ff;">producthubone@gmail.com</a></p>
+    <p>We're open to partnerships, banners, and custom promotions.</p>
+  </footer>
+
+  <section style="padding: 40px; background: #1a1a1a; color: #f0f0f0; border-top: 2px solid #00f0ff; margin-top: 40px;">
+    <h2 style="font-size: 24px; margin-bottom: 10px; color: #00f0ff;">📢 Advertise With Us</h2>
+    <p><strong>Traffic:</strong> 1000+ monthly users</p>
+    <p><strong>Audience:</strong> Tech lovers, students, AI enthusiasts</p>
+    <p><strong>Ad Options:</strong> Banner ads, blog mentions, product placements</p>
+    <p><strong>Contact us:</strong> <a href="mailto:producthubone@gmail.com" style="color:#00f0ff;">producthubone@gmail.com</a></p>
+  </section>
+
+  <!-- 🔗 Navigation -->
+  <nav>
     <a href="./index.html">Home</a> |
     <a href="./blog.html">Blog</a> |
     <a href="./tools.html">Tools</a> |
     <a href="./about.html">About</a> |
-    <a href="./contact.html">Contact</a>
+    <a href="./contact.html">Contact</a> |
     <a href="./privacy.html">Privacy Policy</a>
   </nav>
-<footer>
-  <a href="about.html">About</a> |
-  <a href="contact.html">Contact</a> |
-  <a href="privacy.html">Privacy Policy</a>
-</footer>
-
-
 </body>
 </html>
