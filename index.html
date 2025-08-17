@@ -368,8 +368,62 @@
       }
     }
 
-    const tools = [
+   const tools = [
       { name: "ChatGPT", desc: "AI chatbot from OpenAI.", category: "Text", link: "https://chat.openai.com" },
+	    // Advertising & Marketing
+  { name: "AdCreative.ai", desc: "Generate conversion-focused ad creatives using AI. Top ad tool globally.", category: "Marketing", link: "https://www.adcreative.ai" },
+  { name: "AiSDR", desc: "AI sales platform offering 30% lifetime or 20% 1-year commissions.", category: "Marketing", link: "https://www.aisdr.com" },
+  { name: "Just Reach Out", desc: "AI PR software to help earn press with global media connections.", category: "Marketing", link: "https://justreachout.io" },
+  { name: "Creative Score", desc: "Optimize your ad creatives using AI and behavioral science.", category: "Marketing", link: "https://creativescore.io" },
+  { name: "Recomaze", desc: "White-labeled AI tools for agencies to boost ecommerce SEO and sales.", category: "Marketing", link: "https://recomaze.com" },
+
+  // Voice & Audio
+  { name: "ElevenLabs", desc: "AI-powered text-to-speech with natural voice output.", category: "Voice", link: "https://www.elevenlabs.io" },
+  { name: "Murf AI", desc: "Realistic voiceovers from text using AI.", category: "Voice", link: "https://murf.ai" },
+  { name: "TTSOpenAI", desc: "Convert text, PDFs, and eBooks into natural-sounding MP3s.", category: "Voice", link: "https://ttsopenai.com" },
+
+  // SEO & Analytics
+  { name: "Alli AI", desc: "SEO automation tool that scales with your content—no code needed.", category: "SEO", link: "https://www.alliai.com" },
+  { name: "Explo", desc: "Embed dashboards and analytics into your product seamlessly.", category: "Analytics", link: "https://www.explo.co" },
+
+  // Sales & CRM
+  { name: "Amplemarket", desc: "AI-powered sales automation suite for B2B teams.", category: "Sales", link: "https://amplemarket.com" },
+  { name: "Laxis", desc: "AI Meeting Assistant that enhances sales workflows.", category: "Sales", link: "https://www.laxis.com" },
+  { name: "Reply.io", desc: "Automated sales engagement & Jason AI for outreach at scale.", category: "Sales", link: "https://reply.io" },
+  { name: "Seamless.AI", desc: "Find ideal leads and generate sales faster with AI.", category: "Sales", link: "https://seamless.ai" },
+  { name: "MeetGeek", desc: "AI meeting assistant for teams to transcribe and collaborate.", category: "Sales", link: "https://www.meetgeek.ai" },
+
+  // Productivity & Workflow
+  { name: "ClickUp", desc: "All-in-one productivity and project management suite.", category: "Productivity", link: "https://clickup.com" },
+  { name: "Guidde", desc: "AI-powered how-to video creation tool.", category: "Productivity", link: "https://www.guidde.com" },
+  { name: "Reclaim.ai", desc: "Smart calendar assistant that finds optimal time for work.", category: "Productivity", link: "https://reclaim.ai" },
+  { name: "Notion AI", desc: "Smart writing and task assistant built into Notion.", category: "Productivity", link: "https://www.notion.so/product/ai" },
+
+  // Automation & AI Agents
+  { name: "Lindy", desc: "No-code AI agents to automate workflows.", category: "Automation", link: "https://www.lindy.ai" },
+  { name: "MindStudio", desc: "No-code AI builder to create and deploy AI agents.", category: "Automation", link: "https://mindstudio.com" },
+  { name: "Synthflow AI", desc: "Voice AI agents that automate scheduling and lead qualification.", category: "Automation", link: "https://synthflow.ai" },
+
+  // Landing Pages & Funnels
+  { name: "Landbot", desc: "Build chatbots for lead gen, surveys, and customer support.", category: "Website", link: "https://landbot.io" },
+  { name: "Landingi", desc: "Landing page automation platform with A/B testing.", category: "Website", link: "https://landingi.com" },
+  { name: "Unbounce", desc: "Create high-converting landing pages with AI support.", category: "Website", link: "https://unbounce.com" },
+
+  // Email & Communication
+  { name: "GetResponse", desc: "Email marketing and automation platform for businesses.", category: "Email", link: "https://getresponse.com" },
+  { name: "KrispCall", desc: "Virtual phone app with global connectivity and AI features.", category: "Communication", link: "https://krispcall.com" },
+  { name: "SaneBox", desc: "Email assistant to declutter your inbox with AI.", category: "Email", link: "https://www.sanebox.com" },
+  { name: "Hiver", desc: "Google Workspace-based helpdesk solution.", category: "Communication", link: "https://hiverhq.com" },
+
+  // Branding & Logo
+  { name: "Looka", desc: "Create beautiful logos using AI with brand kits.", category: "Design", link: "https://looka.com" },
+  { name: "Logome.ai", desc: "AI-powered logo and brand identity generator.", category: "Design", link: "https://logome.ai" },
+
+  // Others
+  { name: "Emporia Research", desc: "Earn money referring professionals for B2B surveys.", category: "Research", link: "https://emporiaresearch.com" },
+  { name: "Devicie", desc: "Automate Microsoft Intune device management.", category: "IT", link: "https://devicie.com" },
+  { name: "Pilim", desc: "AI business management for SMEs—HR, cashflow, assets, and more.", category: "Business", link: "https://pilim.com" },
+  { name: "Runpod", desc: "Deploy full-stack AI apps easily on GPU cloud infrastructure.", category: "Cloud", link: "https://runpod.io" },
       { name: "Midjourney", desc: "Image generator from text prompts.", category: "Image", link: "https://www.midjourney.com" },
       { name: "Runway ML", desc: "Video editing and generation with AI.", category: "Video", link: "https://runwayml.com" },
       { name: "ElevenLabs", desc: "Realistic AI voice generator.", category: "Voice", link: "https://elevenlabs.io" },
@@ -386,6 +440,10 @@
       { name: "Magician", desc: "AI tools for Figma.", category: "Image", link: "https://magician.design" },
       { name: "Perplexity AI 🧠", desc: "Ask questions with real-time, cited answers.", category: "Text", link: "https://www.perplexity.ai" },
       { name: "Kaiber AI 🎞️", desc: "Create music videos and animations from prompts.", category: "Video", link: "https://www.kaiber.ai" },
+      { name: "Leonardo AI 🎨", desc: "Next-gen image generation and design.", category: "Image", link: "https://app.leonardo.ai" },
+      { name: "Runway ML 🎬", desc: "AI-powered video editing and text-to-video tools.", category: "Video", link: "https://app.runwayml.com" },
+      { name: "ElevenLabs 🗣️", desc: "High-quality AI voice synthesis in multiple languages.", category: "Voice", link: "https://www.elevenlabs.io" },
+      { name: "Notion AI 📝", desc: "Smart writing assistant embedded in Notion.", category: "Text", link: "https://www.notion.so/product/ai" },
       { name: "Pictory AI 📹", desc: "Turn scripts or blog posts into videos.", category: "Video", link: "https://pictory.ai" },
       { name: "Cleanup.pictures 🧽", desc: "Remove unwanted objects from images easily.", category: "Image", link: "https://cleanup.pictures" },
       { name: "Codeium 💻", desc: "Free AI code autocomplete & chat for devs.", category: "Code", link: "https://codeium.com" },
