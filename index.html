@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5348965009233366"
-     crossorigin="anonymous"></script>
   <link rel="icon" href="/logo.svg" type="image/svg+xml" />
 
   <!-- Basic SEO -->
@@ -40,9 +38,8 @@
   <meta http-equiv="Content-Language" content="en" />
   <meta name="theme-color" content="#0d0d0d" />
 
-  <!-- Inline Styles (Can be moved to styles.css) -->
-<script src="https://fpyf8.com/88/tag.min.js" data-zone="161641" async data-cfasync="false"></script>
- <style>
+  <!-- Inline Styles -->
+  <style>
     * { box-sizing: border-box; }
     body {
       margin: 0;
@@ -198,23 +195,22 @@
       display: none;
       animation: fadeIn 0.4s ease;
     }
-      nav {
-    background: #f0f0f0;
-    padding: 10px;
-    text-align: center;
-  }
-  nav a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-  }
+
+    nav {
+      background: #f0f0f0;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
   </style>
 </head>
 
 <body>
-
-
 
   <!-- 🔥 Header -->
   <header>
@@ -233,7 +229,6 @@
       <option value="Code">Code</option>
       <option value="Email">Email</option>
       <option value="Marketing">Marketing</option>
-      <option value="Voice">Voice</option>
       <option value="Analytics">Analytics</option>
       <option value="Sales">Sales</option>
       <option value="Productivity">Productivity</option>
@@ -246,16 +241,7 @@
       <option value="Business">Business</option>
     </select>
   </div>
-<script type="text/javascript">
-	atOptions = {
-		'key' : '7eae7e06cbd2a7d6bfcf476a79ceff25',
-		'format' : 'iframe',
-		'height' : 50,
-		'width' : 320,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/7eae7e06cbd2a7d6bfcf476a79ceff25/invoke.js"></script>
+
   <!-- 🧠 AI Tools Grid -->
   <div class="grid" id="toolGrid"></div>
   <div class="message" id="statusMessage"></div>
@@ -290,7 +276,6 @@
       <option>Code</option>
       <option>Email</option>
       <option>Marketing</option>
-      <option>Voice</option>
       <option>Analytics</option>
       <option>Sales</option>
       <option>Productivity</option>
@@ -313,155 +298,78 @@
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-  <!-- 🚀 App Logic -->
-	<script type="text/javascript">
-	atOptions = {
-		'key' : '7eae7e06cbd2a7d6bfcf476a79ceff25',
-		'format' : 'iframe',
-		'height' : 50,
-		'width' : 320,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/7eae7e06cbd2a7d6bfcf476a79ceff25/invoke.js"></script>
-   <script>
-    // Replace with your actual Firebase config
-const firebaseConfig = {
-  apiKey: "AIzaSyCWP4LAlKvVwranCpK_tmyBplhwcJu8E0E",
-  authDomain: "blogaihub.firebaseapp.com",
-  databaseURL: "https://blogaihub-default-rtdb.firebaseio.com",
-  projectId: "blogaihub",
-  storageBucket: "blogaihub.firebasestorage.app",
-  messagingSenderId: "280427390233",
-  appId: "1:280427390233:web:7a7f3d48d48cfea3ff5188",
-  measurementId: "G-RMJZDDSZLG"
-};
 
-     
+  <!-- 🚀 App Logic -->
+  <script>
+    // Replace with your actual Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyCWP4LAlKvVwranCpK_tmyBplhwcJu8E0E",
+      authDomain: "blogaihub.firebaseapp.com",
+      databaseURL: "https://blogaihub-default-rtdb.firebaseio.com",
+      projectId: "blogaihub",
+      storageBucket: "blogaihub.firebasestorage.app",
+      messagingSenderId: "280427390233",
+      appId: "1:280427390233:web:7a7f3d48d48cfea3ff5188",
+      measurementId: "G-RMJZDDSZLG"
+    };
+
     firebase.initializeApp(firebaseConfig);
     
     const db = firebase.database();
-     const emailKey = "ai_user_email";
+    const emailKey = "ai_user_email";
 
-  function showEmailPopup() {
-    if (!localStorage.getItem(emailKey)) {
-      document.getElementById("emailPopup").style.display = "flex";
-    }
-  }
-
-  function dismissEmailPopup() {
-    document.getElementById("emailPopup").style.display = "none";
-  }
-
-  function submitEmail() {
-    const email = document.getElementById("userEmailInput").value.trim();
-    if (!email || !email.includes("@")) {
-      alert("Please enter a valid email.");
-      return;
-    }
-
-    // Save to Firebase
- firebase.firestore().collection("emails").add({
-  email: email,
-  timestamp: firebase.firestore.FieldValue.serverTimestamp()
-});
-
- 
-
-
-    // Remember locally
-    localStorage.setItem(emailKey, email);
-
-    // Hide popup
-    document.getElementById("emailPopup").style.display = "none";
-
-    // If a pending link exists, open it now
-    if (window.pendingLink) {
-      window.open(window.pendingLink, "_blank");
-      window.pendingLink = null;
-    }
-  }
-
-
-  // ⏳ Show popup after 5 sec (if not already submitted)
-  setTimeout(showEmailPopup, 5000);
-
-  // 🧠 Hook into “Try Now” buttons
-  function secureOpen(link) {
-    const userEmail = localStorage.getItem(emailKey);
-    if (!userEmail) {
-      window.pendingLink = link;
-      showEmailPopup();
-    } else {
-      window.open(link, "_blank");
-    }
-  }
-
-  // 👇 Replace all button onClicks dynamically
-  setTimeout(() => {
-    document.querySelectorAll(".card button").forEach(btn => {
-      const link = btn.getAttribute("onclick")?.match(/'(.*?)'/)?.[1];
-      if (link) {
-        btn.setAttribute("onclick", `secureOpen('${link}')`);
+    function showEmailPopup() {
+      if (!localStorage.getItem(emailKey)) {
+        document.getElementById("emailPopup").style.display = "flex";
       }
-    });
-  }, 200);
+    }
+
+    function dismissEmailPopup() {
+      document.getElementById("emailPopup").style.display = "none";
+    }
+
+    function submitEmail() {
+      const email = document.getElementById("userEmailInput").value.trim();
+      if (!email || !email.includes("@")) {
+        alert("Please enter a valid email.");
+        return;
+      }
+
+      // Save to Firebase
+      firebase.firestore().collection("emails").add({
+        email: email,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      });
+
+      // Remember locally
+      localStorage.setItem(emailKey, email);
+
+      // Hide popup
+      document.getElementById("emailPopup").style.display = "none";
+
+      // If a pending link exists, open it now
+      if (window.pendingLink) {
+        window.open(window.pendingLink, "_blank");
+        window.pendingLink = null;
+      }
+    }
+
+    // ⏳ Show popup after 5 sec (if not already submitted)
+    setTimeout(showEmailPopup, 5000);
+
+    // 🧠 Hook into “Try Now” buttons
+    function secureOpen(link) {
+      const userEmail = localStorage.getItem(emailKey);
+      if (!userEmail) {
+        window.pendingLink = link;
+        showEmailPopup();
+      } else {
+        window.open(link, "_blank");
+      }
+    }
+
     const tools = [
       { name: "ChatGPT", desc: "AI chatbot from OpenAI.", category: "Text", link: "https://chat.openai.com" },
-	    // Advertising & Marketing
-  { name: "AdCreative.ai", desc: "Generate conversion-focused ad creatives using AI. Top ad tool globally.", category: "Marketing", link: "https://www.adcreative.ai" },
-  { name: "AiSDR", desc: "AI sales platform offering 30% lifetime or 20% 1-year commissions.", category: "Marketing", link: "https://www.aisdr.com" },
-  { name: "Just Reach Out", desc: "AI PR software to help earn press with global media connections.", category: "Marketing", link: "https://justreachout.io" },
-  { name: "Creative Score", desc: "Optimize your ad creatives using AI and behavioral science.", category: "Marketing", link: "https://creativescore.io" },
-  { name: "Recomaze", desc: "White-labeled AI tools for agencies to boost ecommerce SEO and sales.", category: "Marketing", link: "https://recomaze.com" },
-
-  // Voice & Audio
-  { name: "ElevenLabs", desc: "AI-powered text-to-speech with natural voice output.", category: "Voice", link: "https://www.elevenlabs.io" },
-  { name: "Murf AI", desc: "Realistic voiceovers from text using AI.", category: "Voice", link: "https://murf.ai" },
-  { name: "TTSOpenAI", desc: "Convert text, PDFs, and eBooks into natural-sounding MP3s.", category: "Voice", link: "https://ttsopenai.com" },
-
-  // SEO & Analytics
-  { name: "Alli AI", desc: "SEO automation tool that scales with your content—no code needed.", category: "SEO", link: "https://www.alliai.com" },
-  { name: "Explo", desc: "Embed dashboards and analytics into your product seamlessly.", category: "Analytics", link: "https://www.explo.co" },
-
-  // Sales & CRM
-  { name: "Amplemarket", desc: "AI-powered sales automation suite for B2B teams.", category: "Sales", link: "https://amplemarket.com" },
-  { name: "Laxis", desc: "AI Meeting Assistant that enhances sales workflows.", category: "Sales", link: "https://www.laxis.com" },
-  { name: "Reply.io", desc: "Automated sales engagement & Jason AI for outreach at scale.", category: "Sales", link: "https://reply.io" },
-  { name: "Seamless.AI", desc: "Find ideal leads and generate sales faster with AI.", category: "Sales", link: "https://seamless.ai" },
-  { name: "MeetGeek", desc: "AI meeting assistant for teams to transcribe and collaborate.", category: "Sales", link: "https://www.meetgeek.ai" },
-
-  // Productivity & Workflow
-  { name: "ClickUp", desc: "All-in-one productivity and project management suite.", category: "Productivity", link: "https://clickup.com" },
-  { name: "Guidde", desc: "AI-powered how-to video creation tool.", category: "Productivity", link: "https://www.guidde.com" },
-  { name: "Reclaim.ai", desc: "Smart calendar assistant that finds optimal time for work.", category: "Productivity", link: "https://reclaim.ai" },
-  { name: "Notion AI", desc: "Smart writing and task assistant built into Notion.", category: "Productivity", link: "https://www.notion.so/product/ai" },
-
-  // Automation & AI Agents
-  { name: "Lindy", desc: "No-code AI agents to automate workflows.", category: "Automation", link: "https://www.lindy.ai" },
-  { name: "MindStudio", desc: "No-code AI builder to create and deploy AI agents.", category: "Automation", link: "https://mindstudio.com" },
-  { name: "Synthflow AI", desc: "Voice AI agents that automate scheduling and lead qualification.", category: "Automation", link: "https://synthflow.ai" },
-
-  // Landing Pages & Funnels
-  { name: "Landbot", desc: "Build chatbots for lead gen, surveys, and customer support.", category: "Website", link: "https://landbot.io" },
-  { name: "Landingi", desc: "Landing page automation platform with A/B testing.", category: "Website", link: "https://landingi.com" },
-  { name: "Unbounce", desc: "Create high-converting landing pages with AI support.", category: "Website", link: "https://unbounce.com" },
-
-  // Email & Communication
-  { name: "GetResponse", desc: "Email marketing and automation platform for businesses.", category: "Email", link: "https://getresponse.com" },
-  { name: "KrispCall", desc: "Virtual phone app with global connectivity and AI features.", category: "Communication", link: "https://krispcall.com" },
-  { name: "SaneBox", desc: "Email assistant to declutter your inbox with AI.", category: "Email", link: "https://www.sanebox.com" },
-  { name: "Hiver", desc: "Google Workspace-based helpdesk solution.", category: "Communication", link: "https://hiverhq.com" },
-
-  // Branding & Logo
-  { name: "Looka", desc: "Create beautiful logos using AI with brand kits.", category: "Design", link: "https://looka.com" },
-  { name: "Logome.ai", desc: "AI-powered logo and brand identity generator.", category: "Design", link: "https://logome.ai" },
-
-  // Others
-  { name: "Emporia Research", desc: "Earn money referring professionals for B2B surveys.", category: "Research", link: "https://emporiaresearch.com" },
-  { name: "Devicie", desc: "Automate Microsoft Intune device management.", category: "IT", link: "https://devicie.com" },
-  { name: "Pilim", desc: "AI business management for SMEs—HR, cashflow, assets, and more.", category: "Business", link: "https://pilim.com" },
-  { name: "Runpod", desc: "Deploy full-stack AI apps easily on GPU cloud infrastructure.", category: "Cloud", link: "https://runpod.io" },
       { name: "Midjourney", desc: "Image generator from text prompts.", category: "Image", link: "https://www.midjourney.com" },
       { name: "Runway ML", desc: "Video editing and generation with AI.", category: "Video", link: "https://runwayml.com" },
       { name: "ElevenLabs", desc: "Realistic AI voice generator.", category: "Voice", link: "https://elevenlabs.io" },
@@ -478,22 +386,17 @@ const firebaseConfig = {
       { name: "Magician", desc: "AI tools for Figma.", category: "Image", link: "https://magician.design" },
       { name: "Perplexity AI 🧠", desc: "Ask questions with real-time, cited answers.", category: "Text", link: "https://www.perplexity.ai" },
       { name: "Kaiber AI 🎞️", desc: "Create music videos and animations from prompts.", category: "Video", link: "https://www.kaiber.ai" },
-      { name: "Leonardo AI 🎨", desc: "Next-gen image generation and design.", category: "Image", link: "https://app.leonardo.ai" },
-      { name: "Runway ML 🎬", desc: "AI-powered video editing and text-to-video tools.", category: "Video", link: "https://app.runwayml.com" },
-      { name: "ElevenLabs 🗣️", desc: "High-quality AI voice synthesis in multiple languages.", category: "Voice", link: "https://www.elevenlabs.io" },
-      { name: "Notion AI 📝", desc: "Smart writing assistant embedded in Notion.", category: "Text", link: "https://www.notion.so/product/ai" },
       { name: "Pictory AI 📹", desc: "Turn scripts or blog posts into videos.", category: "Video", link: "https://pictory.ai" },
       { name: "Cleanup.pictures 🧽", desc: "Remove unwanted objects from images easily.", category: "Image", link: "https://cleanup.pictures" },
       { name: "Codeium 💻", desc: "Free AI code autocomplete & chat for devs.", category: "Code", link: "https://codeium.com" },
       { name: "Riffusion 🎶", desc: "Create music from spectrogram-based AI.", category: "Voice", link: "https://www.riffusion.com" },
     ];
-	   
 
     function displayTools(filterText = "", filterCategory = "All") {
       const grid = document.getElementById('toolGrid');
       grid.innerHTML = "";
       tools
-        .filter(tool =>
+         .filter(tool =>
           tool.name.toLowerCase().includes(filterText.toLowerCase()) &&
           (filterCategory === "All" || tool.category === filterCategory)
         )
@@ -530,10 +433,9 @@ const firebaseConfig = {
 
       if (newTool.name && newTool.link && newTool.category && newTool.desc) {
         firebase.firestore().collection("tools").add({
-  ...newTool,
-  timestamp: firebase.firestore.FieldValue.serverTimestamp()
-});
-	      
+          ...newTool,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        });
 
         const msg = document.getElementById("statusMessage");
         msg.textContent = "✅ Tool submitted successfully!";
@@ -551,36 +453,35 @@ const firebaseConfig = {
 
     displayTools();
     firebase.auth().onAuthStateChanged((user) => {
-  if (user && user.email === "manchasrinivas2006@gmail.com") {
-    document.getElementById("downloadEmailsBtn").style.display = "block";
-  }
-});
-function downloadAllEmails() {
-  firebase.firestore().collection("emails").get()
-    .then(snapshot => {
-      const rows = [["Email", "Timestamp"]];
-      snapshot.forEach(doc => {
-        const data = doc.data();
-        const email = data.email || "";
-        const ts = data.timestamp?.toDate().toISOString() || "";
-        rows.push([email, ts]);
-      });
-
-      const csv = rows.map(r => r.join(",")).join("\n");
-      const blob = new Blob([csv], { type: "text/csv" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "all_emails.csv";
-      a.click();
-      URL.revokeObjectURL(url);
-    })
-    .catch(err => {
-      alert("Download failed: " + err.message);
+      if (user && user.email === "manchasrinivas2006@gmail.com") {
+        document.getElementById("downloadEmailsBtn").style.display = "block";
+      }
     });
-}
 
+    function downloadAllEmails() {
+      firebase.firestore().collection("emails").get()
+        .then(snapshot => {
+          const rows = [["Email", "Timestamp"]];
+          snapshot.forEach(doc => {
+            const data = doc.data();
+            const email = data.email || "";
+            const ts = data.timestamp?.toDate().toISOString() || "";
+            rows.push([email, ts]);
+          });
 
+          const csv = rows.map(r => r.join(",")).join("\n");
+          const blob = new Blob([csv], { type: "text/csv" });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "all_emails.csv";
+          a.click();
+          URL.revokeObjectURL(url);
+        })
+        .catch(err => {
+          alert("Download failed: " + err.message);
+        });
+    }
   </script>
 
   <!-- 📢 Footer -->
@@ -590,39 +491,7 @@ function downloadAllEmails() {
     <p>Email us at <a href="mailto:producthubone@gmail.com" style="color:#00f0ff;">producthubone@gmail.com</a></p>
     <p>We're open to partnerships, banners, and custom promotions.</p>
   </footer>
-    <!-- 💡 Ads Section -->
-  <div style="width:160px; height:600px; margin:auto;">
-    <script type="text/javascript">
-      atOptions = {
-        'key' : '0f8c86dd1767b63d8841d00d7480701d',
-        'format' : 'iframe',
-        'height' : 600,
-        'width' : 160,
-        'params' : {}
-      };
-    </script>
-    <script src="//www.highperformanceformat.com/0f8c86dd1767b63d8841d00d7480701d/invoke.js"></script>
-  </div>
 
-  <div style="max-width:100%; text-align:center; margin:20px 0;">
-    <iframe src="https://www.profitableratecpm.com/ybawrqtdpb?key=9f09604ea34cdee1adb8e1e23cb1df94"
-            style="width:100%; max-width:728px; height:90px; border:none; overflow:hidden;"
-            scrolling="no" frameborder="0"></iframe>
-  </div>
-
-  <!-- Popunder Script -->
-  <script src="//pl27299320.profitableratecpm.com/ea/0b/06/ea0b06d958d1ccfe12231d4d140feb96.js"></script>
-
-  <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5348965009233366"
-          crossorigin="anonymous"></script>
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-5348965009233366"
-       data-ad-slot="3383387758"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   <section style="padding: 40px; background: #1a1a1a; color: #f0f0f0; border-top: 2px solid #00f0ff; margin-top: 40px;">
     <h2 style="font-size: 24px; margin-bottom: 10px; color: #00f0ff;">📢 Advertise With Us</h2>
     <p><strong>Traffic:</strong> 1000+ monthly users</p>
@@ -640,9 +509,5 @@ function downloadAllEmails() {
     <a href="./contact.html">Contact</a> |
     <a href="./privacy.html">Privacy Policy</a>
   </nav>
-
-
-
 </body>
 </html>
-
