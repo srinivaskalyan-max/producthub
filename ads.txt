@@ -1,0 +1,2 @@
+<ad system domain>, <publisher ID>, <account type>, <certification authority ID>
+google.com, pub-1234567890123456, DIRECT, f08c47fec0942fa0
